@@ -7,5 +7,8 @@ for pedido in pedidos:
     print(
         f'Identificador: {pedido[0]} | Status do pedido: {pedido[1]} | Valor do pedido: R$ {pedido[2]:.2f}'
           )
+cursor.execute('SELECT SUM(valor_total) FROM pedidos')
+resultado_total = cursor.fetchone()
+print(f'Valor total dos pedidos: R$ {resultado_total[0]:.2f}')
 cursor.close()
 conexao.close()
