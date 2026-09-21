@@ -22,5 +22,10 @@ cursor.execute('SELECT AVG(valor_total) FROM pedidos')
 resultado_media = cursor.fetchone()
 print(f'Valor médio dos pedidos: R$ {resultado_media[0]:.2f}')
 
+cursor.execute ('SELECT status_pedido, COUNT(id_pedido) FROM pedidos GROUP BY status_pedido')
+pedidos_por_status = cursor.fetchall()
+for status in pedidos_por_status:
+    print(f'Status do pedido: {status[0]} | Quantidade: {status[1]}')
+
 cursor.close()
 conexao.close()
