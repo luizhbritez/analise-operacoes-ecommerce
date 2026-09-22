@@ -10,22 +10,19 @@ for pedido in pedidos:
         f'Identificador: {pedido[0]} | Status do pedido: {pedido[1]} | Valor do pedido: R$ {pedido[2]:.2f}'
           )
 
-cursor.execute('SELECT SUM(valor_total) FROM pedidos')
-resultado_total = cursor.fetchone()
-print(f'Valor total dos pedidos: R$ {resultado_total[0]:.2f}')
+cursor.execute('SELECT SUM(valor_total), COUNT(id_pedido), AVG(valor_total) FROM pedidos')
 
-cursor.execute('SELECT COUNT(id_pedido) FROM pedidos')
-resultado_quantidade = cursor.fetchone()
-print(f'Quantidade total de pedidos: {resultado_quantidade[0]}')
+resumo_geral = cursor.fetchone()
 
-cursor.execute('SELECT AVG(valor_total) FROM pedidos')
-resultado_media = cursor.fetchone()
-print(f'Valor médio dos pedidos: R$ {resultado_media[0]:.2f}')
+print(f'Valor total dos pedidos: R$ {resumo_geral[0]:.2f}')
+print(f'Quantidade total de pedidos: {resumo_geral[1]}')
+print(f'Valor médio dos pedidos: R$ {resumo_geral[2]:.2f}')
 
-cursor.execute ('SELECT status_pedido, COUNT(id_pedido) FROM pedidos GROUP BY status_pedido')
+cursor.execute('SELECT status_pedido, COUNT(id_pedido), SUM(valor_total) FROM pedidos GROUP BY status_pedido')
 pedidos_por_status = cursor.fetchall()
 for status in pedidos_por_status:
-    print(f'Status do pedido: {status[0]} | Quantidade: {status[1]}')
+    print(f'Status: {status[0]} | Quantidade: {status[1]} | Valor total: R$ {status[2]:.2f}')
+
 
 cursor.close()
 conexao.close()
