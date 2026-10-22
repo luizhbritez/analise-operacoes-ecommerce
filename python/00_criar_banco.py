@@ -15,4 +15,4 @@ conexao.executescript(estrutura_sql)
 conexao.executescript(carga_sql)
 
 conexao.close()
-print ('Banco criado e dados carregados com sucesso.')
+print('Banco criado e dados carregados com sucesso.')

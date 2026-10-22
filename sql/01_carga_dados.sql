@@ -56,4 +56,16 @@ INSERT INTO pagamentos (id_pedido, metodo_pagamento, status_pagamento, valor_pag
 INSERT INTO atendimentos (id_pedido, canal, motivo_atendimento, data_abertura, data_fechamento, status_atendimento, nota_satisfacao)
  VALUES (3, 'Chat', 'Pagamento não aprovado', '2026-09-11 11:00:00', '2026-09-11 11:20:00', 'Resolvido', 4);
 
+INSERT INTO pedidos (id_cliente, data_pedido, status_pedido, valor_total, motivo_cancelamento)
+ VALUES (1, '2026-09-15', 'Cancelado', 129.90, 'Desistência do cliente');
+
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario)
+ VALUES (4, 3, 1, 129.90);
+
+INSERT INTO pagamentos (id_pedido, metodo_pagamento, status_pagamento, valor_pago, data_pagamento)
+ VALUES (4, 'Pix', 'Aprovado', 129.90, '2026-09-15');
+
+INSERT INTO reembolsos (id_pagamento, data_solicitacao, data_conclusao, valor_reembolso, motivo_reembolso, status_reembolso)
+ VALUES (4, '2026-09-16', NULL, 129.90, 'Desistência do cliente', 'Pendente');
+
 COMMIT;
