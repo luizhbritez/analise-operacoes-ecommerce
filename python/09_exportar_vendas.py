@@ -19,8 +19,5 @@ with open('vendas_por_categoria.csv', 'w', newline = '', encoding = 'utf-8-sig')
     escritor.writerow(['Categoria', 'Quantidade', 'Valor total vendido'])
     escritor.writerows(vendas_por_categoria)
 
-
-
-
 cursor.close()
 conexao.close()
